@@ -16,21 +16,20 @@ let piecesValue = [ 0, 0, 0 ]; // [0] - rock, [1] - paper, [2] - scissors
   console.log( `Initial pieces values for rock, paper, scissors are ${ piecesValue }.` );
 
 // Win-message
-let winMessage;
 let rockWinMessages = [ "Rock smashes steel!", "Rock crushes scissors!", "Rock and smash!" ];
 let paperWinMessages = [ "Paper wraps the rock!", "Paper stronger when bends!", "Saving paper!" ];
 let scissorsWinMessages = [ "Sharp and furious against paper!", "Blades against flex!" ];
 
-// Loose-message
-let looseMessage;
-let rockLooseMessages = [ "Your rock was wrapped.", "Living rocks suffocated by plastick paper." ];
-let paperLooseMessages = [ "Paper was literary shreddered with the scissors", "Paper can't withdstand the blades." ];
-let scissorsLooseMessages = [ "Scissors clang  and broke", "Blades can't destroy the rock." ];
+// lose-message
+let rockLoseMessages = [ "Your rock was wrapped.", "Living rocks suffocated by plastick paper." ];
+let paperLoseMessages = [ "Paper was literary shreddered with the scissors", "Paper can't withdstand the blades." ];
+let scissorsLoseMessages = [ "Scissors clang  and broke", "Blades can't destroy the rock." ];
 
 // Tie-message
-let tieMessage;
 let tieMessages = [ "It's a tie! Shoot again", "You're bloody good, both of you. Come again!" ];
 
+// Lousy-message
+let lousyMessages = [ "You showed a wrong simbol with your bloody fingers!", "Try to be less original with symbols ;)" ];
 
 // Initiate global functions
 function sample( array ) {                                                  // random choice from the given array
@@ -65,40 +64,50 @@ function evaluateUserChoice( piecesValue, userChoice ) {
 
 function shootResult ( shootPower ) {
   if( shootPower === 2 ) {
-    return win()
+    return win( userChoice )
   } else if( shootPower === 1 ) {
-    return tie()
+    return tie( userChoice )
   } else if( shootPower === 0 ) {
-    return loose()
+    return lose()
   } else if( shootPower === -1 ) {
     return lousyChoice()
   }
 }
 
-function win( userChoice ) {
+function win( piece ) {
   shootCounter += 1;
   roundCounter += 1;
   scoreUserComputer[ 0 ] += 1;
   if( userChoice === 'r' ) {
-    winMessage = sample( rockWinMessages )
+    return sample( rockWinMessages )
   } else if( userChoice === 'p' ) {
-    winMessage = sample( paperWinMessages )
+    return sample( paperWinMessages )
   } else if( userChoice === 's' ) {
-    winMessage = sample( scissorsWinMessages )
+    return sample( scissorsWinMessages )
   }
 }
 
-function loose( userChoice ) {
+function lose( piece ) {
   shootCounter += 1;
   roundCounter += 1;
   scoreUserComputer[ 1 ] += 1;
-  switch ( userChoice ) {
-    case 'r' : console.log( sample( rockLooseMessages )); 
-    break;
-    case 'p' : console.log( sample( paperLooseMessages ));
-    break;
-    case 's' : console.log( sample( scissorsLooseMessages ));
+  if( userChoice === 'r' ) {
+    return sample( rockLoseMessages )
+  } else if( userChoice === 'p' ) {
+    return sample( paperLoseMessages )
+  } else if( userChoice === 's' ) {
+    return sample( scissorsLoseMessages )
   }
+}
+
+function tie() {
+  shootCounter += 1;
+  return sample( tieMessages );
+}
+
+function lousyChoice() {
+  shootCounter += 1;
+  return sample( lousyMessages );
 }
 
 // Play game till all rounds are played
@@ -112,4 +121,6 @@ function loose( userChoice ) {
   evaluateUserChoice( piecesValue, userChoice );
    console.log( shootPower );
   shootResult( shootPower );
+   console.log( shootResult( shootPower ));
+   console.log( `Round: ${ roundCounter }. Score: you ${ scoreUserComputer[ 0 ] } -- computer ${ scoreUserComputer[ 1 ] }` );
     
