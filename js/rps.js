@@ -1,4 +1,4 @@
-// Welcome message, and warm-up for user
+// Welcome message, and warm-up for player
 let greetings = "Hi, welcome to Rock. Paper. Scissors. Shoot";
   console.log( greetings );
 let rounds = prompt( "How many rounds would you play?", '3' );
@@ -7,10 +7,10 @@ rounds = Number( rounds );
 // Initiate global variables 
 let roundCounter = 0;
 let shootCounter = 0;
-let userChoice;
+let playerChoice;
 let computerChoice;
-let scoreUserComputer = [ 0, 0 ];
-  console.log( `You're playing against computer. The score is ${ scoreUserComputer }.` );
+let scorePlayerComputer = [ 0, 0 ];
+  console.log( `You're playing against computer. The score is ${ scorePlayerComputer }.` );
 let pieces = [ 'rock', 'paper', 'scissors' ];
 let piecesValue = [ 0, 0, 0 ]; // [0] - rock, [1] - paper, [2] - scissors
   console.log( `Initial pieces values for rock, paper, scissors are ${ piecesValue }.` );
@@ -36,6 +36,13 @@ function sample( array ) {                                                  // r
   return array[ Math.floor( Math.random() * array.length )]
 };
 
+function countRounds( roundCounter ) { // TEST!!!!!!
+  roundCounter = initialCount += 1;
+  return roundCounter;
+}
+
+
+
 function getComputerChoice() {
   return computerChoice = sample( pieces );
 };
@@ -50,12 +57,12 @@ function assignPiecesValue( choice ) {
   }
 };
 
-function evaluateUserChoice( piecesValue, userChoice ) {
-  if( userChoice === 'r' ) {
+function evaluateShootPowerOfPlayerChoice( piecesValue, playerChoice ) {
+  if( playerChoice === 'r' ) {
     return shootPower = piecesValue[ 0 ]
-  } else if ( userChoice === 'p' ) {
+  } else if ( playerChoice === 'p' ) {
     return shootPower = piecesValue[ 1 ]
-  } else if ( userChoice === 's' ) {
+  } else if ( playerChoice === 's' ) {
     return shootPower = piecesValue[ 2 ]
   } else {
     return shootPower = -1
@@ -64,9 +71,9 @@ function evaluateUserChoice( piecesValue, userChoice ) {
 
 function shootResult ( shootPower ) {
   if( shootPower === 2 ) {
-    return win( userChoice )
+    return win( playerChoice )
   } else if( shootPower === 1 ) {
-    return tie( userChoice )
+    return tie( playerChoice )
   } else if( shootPower === 0 ) {
     return lose()
   } else if( shootPower === -1 ) {
@@ -77,12 +84,12 @@ function shootResult ( shootPower ) {
 function win( piece ) {
   shootCounter += 1;
   roundCounter += 1;
-  scoreUserComputer[ 0 ] += 1;
-  if( userChoice === 'r' ) {
+  scorePlayerComputer[ 0 ] += 1;
+  if( playerChoice === 'r' ) {
     return sample( rockWinMessages )
-  } else if( userChoice === 'p' ) {
+  } else if( playerChoice === 'p' ) {
     return sample( paperWinMessages )
-  } else if( userChoice === 's' ) {
+  } else if( playerChoice === 's' ) {
     return sample( scissorsWinMessages )
   }
 }
@@ -90,12 +97,12 @@ function win( piece ) {
 function lose( piece ) {
   shootCounter += 1;
   roundCounter += 1;
-  scoreUserComputer[ 1 ] += 1;
-  if( userChoice === 'r' ) {
+  scorePlayerComputer[ 1 ] += 1;
+  if( playerChoice === 'r' ) {
     return sample( rockLoseMessages )
-  } else if( userChoice === 'p' ) {
+  } else if( playerChoice === 'p' ) {
     return sample( paperLoseMessages )
-  } else if( userChoice === 's' ) {
+  } else if( playerChoice === 's' ) {
     return sample( scissorsLoseMessages )
   }
 }
@@ -111,16 +118,22 @@ function lousyChoice() {
 }
 
 // Play game till all rounds are played
-  // Play round, till defineWinner
-  getComputerChoice();
-  assignPiecesValue( computerChoice );
-    console.log( `Values of rock, paper, scissors in this shoot are ${ piecesValue }.` );
-  userChoice = prompt( "Type a letter to shoot (R)ock, (P)aper, or (S)cissors: ", '' );
-  userChoice = userChoice.toLowerCase();
-    console.log( `The user choice ${ userChoice }` );
-  evaluateUserChoice( piecesValue, userChoice );
-   console.log( shootPower );
-  shootResult( shootPower );
-   console.log( shootResult( shootPower ));
-   console.log( `Round: ${ roundCounter }. Score: you ${ scoreUserComputer[ 0 ] } -- computer ${ scoreUserComputer[ 1 ] }` );
-    
+  // Play round
+  // roundCounter
+  // Repeat till changeScore  
+    // shootCounter
+    getComputerChoice();
+    assignPiecesValue( computerChoice );
+      console.log( `Values of rock, paper, scissors in this shoot are ${ piecesValue }.` );
+    playerChoice = prompt( "Type a letter to shoot (R)ock, (P)aper, or (S)cissors: ", '' );
+    playerChoice = playerChoice.toLowerCase();
+      console.log( `The player choice ${ playerChoice }` );
+    evaluateShootPowerOfPlayerChoice( piecesValue, playerChoice );
+      console.log( shootPower );
+    shootResult( shootPower );
+      console.log( shootResult( shootPower ));
+      console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
+    // returnMessage
+  // return scorePlayerComputer
+// return resultMessage
+      
