@@ -36,12 +36,15 @@ function sample( array ) {                                                  // r
   return array[ Math.floor( Math.random() * array.length )]
 };
 
-function countRounds( roundCounter ) { // TEST!!!!!!
+function countRounds( initialCount ) { // TEST!!!!!!
   roundCounter = initialCount += 1;
   return roundCounter;
 }
 
-
+function countShoots( initialCount ) {
+  shootCounter = initialCount += 1;
+  return shootCounter;
+}
 
 function getComputerChoice() {
   return computerChoice = sample( pieces );
@@ -83,7 +86,6 @@ function shootResult ( shootPower ) {
 
 function win( piece ) {
   shootCounter += 1;
-  roundCounter += 1;
   scorePlayerComputer[ 0 ] += 1;
   if( playerChoice === 'r' ) {
     return sample( rockWinMessages )
@@ -96,7 +98,6 @@ function win( piece ) {
 
 function lose( piece ) {
   shootCounter += 1;
-  roundCounter += 1;
   scorePlayerComputer[ 1 ] += 1;
   if( playerChoice === 'r' ) {
     return sample( rockLoseMessages )
@@ -117,23 +118,37 @@ function lousyChoice() {
   return sample( lousyMessages );
 }
 
-// Play game till all rounds are played
-  // Play round
-  // roundCounter
-  // Repeat till changeScore  
-    // shootCounter
-    getComputerChoice();
-    assignPiecesValue( computerChoice );
-      console.log( `Values of rock, paper, scissors in this shoot are ${ piecesValue }.` );
-    playerChoice = prompt( "Type a letter to shoot (R)ock, (P)aper, or (S)cissors: ", '' );
-    playerChoice = playerChoice.toLowerCase();
-      console.log( `The player choice ${ playerChoice }` );
-    evaluateShootPowerOfPlayerChoice( piecesValue, playerChoice );
-      console.log( shootPower );
-    shootResult( shootPower );
-      console.log( shootResult( shootPower ));
+function playRound( roundCounter, initialRoundScore ) {
+    console.log( `And it's round ${ roundCounter }` );
+    // Repeat till changeScore
+    while( initialRoundScore === scorePlayerComputer ) {
+      shoot ( scorePlayerComputer );
+      return scorePlayerComputer;
       console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
-    // returnMessage
+    }
+}
+
+function shoot( score ) {
+  // do shoot
+  getComputerChoice();
+  assignPiecesValue( computerChoice );
+    console.log( `Values of rock, paper, scissors in this shoot are ${ piecesValue }.` );
+  playerChoice = prompt( "Type a letter to shoot (R)ock, (P)aper, or (S)cissors: ", '' );
+  playerChoice = playerChoice.toLowerCase();
+    console.log( `The player choice ${ playerChoice }` );
+  evaluateShootPowerOfPlayerChoice( piecesValue, playerChoice );
+    console.log( shootPower );
+  shootResult( shootPower );
+    console.log( shootResult( shootPower ));
+  return scorePlayerComputer;
+}
+
+// Play game till all rounds are played
+  // roundCounter
+  countRounds( roundCounter );
+  // Play round
+  playRound( roundCounter, scorePlayerComputer );  
+    // returnMessage    
   // return scorePlayerComputer
 // return resultMessage
       
