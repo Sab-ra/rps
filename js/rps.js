@@ -1,15 +1,12 @@
-// Welcome message, and warm-up for player
+
+// Initiate global variables 
 let greetings = "Hi, welcome to Rock. Paper. Scissors. Shoot";
   console.log( greetings );
-let rounds = prompt( "How many rounds would you play?", '3' );
-rounds = Number( rounds );
-  console.log( `You're about to play ${ rounds }-round game.` );
-// Initiate global variables 
 let roundCounter = 0;
 let shootCounter = 0;
 let playerChoice;
-let computerChoice;
 let scorePlayerComputer = [ 0, 0 ];
+let computerChoice;
   console.log( `You're playing against computer. The score is ${ scorePlayerComputer }.` );
 let pieces = [ 'rock', 'paper', 'scissors' ];
 let piecesValue = [ 0, 0, 0 ]; // [0] - rock, [1] - paper, [2] - scissors
@@ -143,12 +140,20 @@ function shoot( score ) {
   return scorePlayerComputer;
 }
 
+// Welcome message, and warm-up for player
+ console.log( greetings );
+let rounds = prompt( "How many rounds would you play?", '3' );
+rounds = Number( rounds );
+  console.log( `You're about to play ${ rounds }-round game.` );
 // Play game till all rounds are played
   // roundCounter
   countRounds( roundCounter );
-  // Play round
-  playRound( roundCounter, scorePlayerComputer );  
-    // returnMessage    
+  playRound( roundCounter, scorePlayerComputer );
+  countRounds( roundCounter );
+  playRound( roundCounter, scorePlayerComputer );
+  countRounds( roundCounter );
+  playRound( roundCounter, scorePlayerComputer );
+  // returnMessage    
   // return scorePlayerComputer
 // return resultMessage
       
