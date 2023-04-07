@@ -1,16 +1,9 @@
 
 // Initiate global variables 
-let greetings = "Hi, welcome to Rock. Paper. Scissors. Shoot";
-  console.log( greetings );
 let roundCounter = 0;
 let shootCounter = 0;
 let playerChoice;
-let scorePlayerComputer = [ 0, 0 ];
 let computerChoice;
-  console.log( `You're playing against computer. The score is ${ scorePlayerComputer }.` );
-let pieces = [ 'rock', 'paper', 'scissors' ];
-let piecesValue = [ 0, 0, 0 ]; // [0] - rock, [1] - paper, [2] - scissors
-  console.log( `Initial pieces values for rock, paper, scissors are ${ piecesValue }.` );
 
 // Win-message
 let rockWinMessages = [ "Rock smashes steel!", "Rock crushes scissors!", "Rock and smash!" ];
@@ -33,7 +26,7 @@ function sample( array ) {                                                  // r
   return array[ Math.floor( Math.random() * array.length )]
 };
 
-function countRounds( initialCount ) { // TEST!!!!!!
+function countRounds( initialCount ) { 
   roundCounter = initialCount += 1;
   return roundCounter;
 }
@@ -71,10 +64,12 @@ function evaluateShootPowerOfPlayerChoice( piecesValue, playerChoice ) {
 
 function shootResult ( shootPower ) {
   if( shootPower === 2 ) {
+    scorePlayerComputer[ 0 ] ++ ;
     return win( playerChoice )
   } else if( shootPower === 1 ) {
     return tie( playerChoice )
   } else if( shootPower === 0 ) {
+    scorePlayerComputer[ 1 ] ++ ;
     return lose()
   } else if( shootPower === -1 ) {
     return lousyChoice()
@@ -82,8 +77,6 @@ function shootResult ( shootPower ) {
 }
 
 function win( piece ) {
-  shootCounter += 1;
-  scorePlayerComputer[ 0 ] += 1;
   if( playerChoice === 'r' ) {
     return sample( rockWinMessages )
   } else if( playerChoice === 'p' ) {
@@ -94,8 +87,6 @@ function win( piece ) {
 }
 
 function lose( piece ) {
-  shootCounter += 1;
-  scorePlayerComputer[ 1 ] += 1;
   if( playerChoice === 'r' ) {
     return sample( rockLoseMessages )
   } else if( playerChoice === 'p' ) {
@@ -106,26 +97,23 @@ function lose( piece ) {
 }
 
 function tie() {
-  shootCounter += 1;
   return sample( tieMessages );
 }
 
 function lousyChoice() {
-  shootCounter += 1;
   return sample( lousyMessages );
 }
 
-function playRound( roundCounter, initialRoundScore ) {
-    console.log( `And it's round ${ roundCounter }` );
-    // Repeat till changeScore
-    while( initialRoundScore === scorePlayerComputer ) {
-      shoot ( scorePlayerComputer );
-      return scorePlayerComputer;
-      console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
-    }
-}
+// function playRound( initialRoundScore ) {
+//     // Repeat till changeScore
+//     while( initialRoundScore === scorePlayerComputer ) {
+//       shoot ( scorePlayerComputer );
+//       return scorePlayerComputer;
+//     }
+// }
 
-function shoot( score ) {
+function shoot( scorePlayerComputer ) {
+  shootCounter += 1;
   // do shoot
   getComputerChoice();
   assignPiecesValue( computerChoice );
@@ -140,19 +128,32 @@ function shoot( score ) {
   return scorePlayerComputer;
 }
 
-// Welcome message, and warm-up for player
- console.log( greetings );
+// Welcome message, and game setup
+const Greetings = "Hi, welcome to Rock. Paper. Scissors. Shoot! \n";
+  console.log( Greetings );
 let rounds = prompt( "How many rounds would you play?", '3' );
 rounds = Number( rounds );
   console.log( `You're about to play ${ rounds }-round game.` );
+let scorePlayerComputer = [ 0, 0 ];
+  console.log( `You're playing against computer. The score is ${ scorePlayerComputer }.` );
+let pieces = [ 'rock', 'paper', 'scissors' ];
+let piecesValue = [ 0, 0, 0 ]; // [0] - rock, [1] - paper, [2] - scissors
+  console.log( `Initial pieces values for rock, paper, scissors are ${ piecesValue }.` );
+
 // Play game till all rounds are played
   // roundCounter
   countRounds( roundCounter );
-  playRound( roundCounter, scorePlayerComputer );
+    console.log( `And it's round ${ roundCounter }` );
+  shoot( scorePlayerComputer );
+    console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
   countRounds( roundCounter );
-  playRound( roundCounter, scorePlayerComputer );
+    console.log( `And it's round ${ roundCounter }` );  
+  shoot( scorePlayerComputer );
+    console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
   countRounds( roundCounter );
-  playRound( roundCounter, scorePlayerComputer );
+    console.log( `And it's round ${ roundCounter }` );  
+  shoot( scorePlayerComputer );
+    console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
   // returnMessage    
   // return scorePlayerComputer
 // return resultMessage
