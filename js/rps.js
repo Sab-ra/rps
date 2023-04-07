@@ -103,6 +103,20 @@ function lousyChoice() {
   return sample( lousyMessages );
 }
 
+function scoreChange( definer ) {
+  switch( definer ) {
+    case 2:
+      scorePlayerComputer[ 0 ] ++;
+      break;
+    case 0:
+      scorePlayerComputer[ 1 ] ++;
+      break;
+    case -1:
+      scorePlayerComputer[ 1 ] ++;
+      break;
+  } 
+}
+
 // function playRound( initialRoundScore ) {
 //     // Repeat till changeScore
 //     while( initialRoundScore === scorePlayerComputer ) {
@@ -145,6 +159,7 @@ let piecesValue = [ 0, 0, 0 ]; // [0] - rock, [1] - paper, [2] - scissors
     console.log( shootPower );
   shootResult( shootPower );
     console.log( shootMessage );
+  scoreChange( shootPower );
     console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
   
   countRounds( roundCounter );
@@ -153,6 +168,7 @@ let piecesValue = [ 0, 0, 0 ]; // [0] - rock, [1] - paper, [2] - scissors
     console.log( shootPower );
   shootResult( shootPower );
     console.log( shootMessage );
+  scoreChange( shootPower );
     console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
   
   countRounds( roundCounter );
@@ -161,6 +177,7 @@ let piecesValue = [ 0, 0, 0 ]; // [0] - rock, [1] - paper, [2] - scissors
     console.log( shootPower );
   shootResult( shootPower );
     console.log( shootMessage );
+  scoreChange( shootPower );
     console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
   // returnMessage    
   // return scorePlayerComputer
