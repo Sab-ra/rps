@@ -64,12 +64,10 @@ function evaluateShootPowerOfPlayerChoice( piecesValue, playerChoice ) {
 
 function shootResult ( shootPower ) {
   if( shootPower === 2 ) {
-    scorePlayerComputer[ 0 ] ++ ;
     return win( playerChoice )
   } else if( shootPower === 1 ) {
     return tie( playerChoice )
   } else if( shootPower === 0 ) {
-    scorePlayerComputer[ 1 ] ++ ;
     return lose()
   } else if( shootPower === -1 ) {
     return lousyChoice()
@@ -112,7 +110,7 @@ function lousyChoice() {
 //     }
 // }
 
-function shoot( scorePlayerComputer ) {
+function shoot() {
   shootCounter += 1;
   // do shoot
   getComputerChoice();
@@ -125,7 +123,7 @@ function shoot( scorePlayerComputer ) {
     console.log( shootPower );
   shootResult( shootPower );
     console.log( shootResult( shootPower ));
-  return scorePlayerComputer;
+  return shootPower;
 }
 
 // Welcome message, and game setup
@@ -144,15 +142,15 @@ let piecesValue = [ 0, 0, 0 ]; // [0] - rock, [1] - paper, [2] - scissors
   // roundCounter
   countRounds( roundCounter );
     console.log( `And it's round ${ roundCounter }` );
-  shoot( scorePlayerComputer );
+  shoot();
     console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
   countRounds( roundCounter );
     console.log( `And it's round ${ roundCounter }` );  
-  shoot( scorePlayerComputer );
+  shoot();
     console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
   countRounds( roundCounter );
     console.log( `And it's round ${ roundCounter }` );  
-  shoot( scorePlayerComputer );
+  shoot();
     console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
   // returnMessage    
   // return scorePlayerComputer

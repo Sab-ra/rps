@@ -33,3 +33,5 @@ And then initialises global variables
       input roundCounter : int
       output roundCounter : int
     Function assigns +1 to the previous round counter.
+
+  6. shoot 
