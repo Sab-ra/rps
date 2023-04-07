@@ -121,8 +121,6 @@ function shoot() {
     console.log( `The player choice ${ playerChoice }` );
   evaluateShootPowerOfPlayerChoice( piecesValue, playerChoice );
     console.log( shootPower );
-  shootResult( shootPower );
-    console.log( shootResult( shootPower ));
   return shootPower;
 }
 
@@ -143,14 +141,25 @@ let piecesValue = [ 0, 0, 0 ]; // [0] - rock, [1] - paper, [2] - scissors
   countRounds( roundCounter );
     console.log( `And it's round ${ roundCounter }` );
   shoot();
+    console.log( shootPower );
+  shootResult( shootPower );
+    console.log( shootResult( shootPower ));
     console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
+  
   countRounds( roundCounter );
     console.log( `And it's round ${ roundCounter }` );  
   shoot();
+    console.log( shootPower );
+  shootResult( shootPower );
+    console.log( shootResult( shootPower ));
     console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
+  
   countRounds( roundCounter );
     console.log( `And it's round ${ roundCounter }` );  
   shoot();
+    console.log( shootPower );
+  shootResult( shootPower );
+    console.log( shootResult( shootPower ));
     console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
   // returnMessage    
   // return scorePlayerComputer

@@ -34,4 +34,7 @@ And then initialises global variables
       output roundCounter : int
     Function assigns +1 to the previous round counter.
 
-  6. shoot 
+  6. shoot - prompts player choice,
+            returns shootPower
+  
+  7.
