@@ -135,7 +135,6 @@ function shoot() {
   playerChoice = playerChoice.toLowerCase();
     console.log( `The player choice ${ playerChoice }` );
   evaluateShootPowerOfPlayerChoice( piecesValue, playerChoice );
-    console.log( shootPower );
   return shootPower;
 }
 
