@@ -117,13 +117,24 @@ function scoreChange( definer ) {
   } 
 }
 
-// function playRound( initialRoundScore ) {
-//     // Repeat till changeScore
-//     while( initialRoundScore === scorePlayerComputer ) {
-//       shoot ( scorePlayerComputer );
-//       return scorePlayerComputer;
-//     }
-// }
+function playGame( roundsToPlay ) {
+  for( i = 1; i <= roundsToPlay; i++) {
+    playRound();
+  }
+  return scorePlayerComputer
+}
+
+function playRound() {
+  countRounds( roundCounter );
+    console.log( `And it's round ${ roundCounter }` );
+  shoot();
+    console.log( shootPower );
+  shootResult( shootPower );
+    console.log( shootMessage );
+  scoreChange( shootPower );
+    console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
+  return roundCounter;
+}
 
 function shoot() {
   shootCounter += 1;
@@ -138,6 +149,8 @@ function shoot() {
   return shootPower;
 }
 
+// function gameResult( scoreArray );
+
 // Welcome message, and game setup
 const Greetings = "Hi, welcome to Rock. Paper. Scissors. Shoot! \n";
   console.log( Greetings );
@@ -151,34 +164,6 @@ let piecesValue = [ 0, 0, 0 ]; // [0] - rock, [1] - paper, [2] - scissors
   console.log( `Initial pieces values for rock, paper, scissors are ${ piecesValue }.` );
 
 // Play game till all rounds are played
-  // roundCounter
-  countRounds( roundCounter );
-    console.log( `And it's round ${ roundCounter }` );
-  shoot();
-    console.log( shootPower );
-  shootResult( shootPower );
-    console.log( shootMessage );
-  scoreChange( shootPower );
-    console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
-  
-  countRounds( roundCounter );
-    console.log( `And it's round ${ roundCounter }` );  
-  shoot();
-    console.log( shootPower );
-  shootResult( shootPower );
-    console.log( shootMessage );
-  scoreChange( shootPower );
-    console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
-  
-  countRounds( roundCounter );
-    console.log( `And it's round ${ roundCounter }` );  
-  shoot();
-    console.log( shootPower );
-  shootResult( shootPower );
-    console.log( shootMessage );
-  scoreChange( shootPower );
-    console.log( `Round: ${ roundCounter }. Score: you ${ scorePlayerComputer[ 0 ] } -- computer ${ scorePlayerComputer[ 1 ] }` );
-  // returnMessage    
-  // return scorePlayerComputer
-// return resultMessage
+playGame( rounds );
+// gameResult ( scorePlayerComputer );
       
