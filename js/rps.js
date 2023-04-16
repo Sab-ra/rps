@@ -149,7 +149,18 @@ function shoot() {
   return shootPower;
 }
 
-// function gameResult( scoreArray );
+function gameResult( playerScore, computerScore ) {
+  playerScore = scorePlayerComputer[ 0 ];
+  computerScore = scorePlayerComputer[ 1 ];
+  if( playerScore === computerScore ) {
+      gameResult = "Even. You got to brake this tie another time."
+  } else if( playerScore > computerScore ) {
+      gameResult = "You won! You got to be a hacker or something."
+  } else {
+      gameResult = "This time the game is not yours. Try another option."
+  }
+  return gameResult; 
+}
 
 // Welcome message, and game setup
 const Greetings = "Hi, welcome to Rock. Paper. Scissors. Shoot! \n";
@@ -165,5 +176,6 @@ let piecesValue = [ 0, 0, 0 ]; // [0] - rock, [1] - paper, [2] - scissors
 
 // Play game till all rounds are played
 playGame( rounds );
-// gameResult ( scorePlayerComputer );
+gameResult ( scorePlayerComputer[ 0 ], scorePlayerComputer[ 1 ]);
+  console.log( `\n ${ gameResult }. Final score is ${ scorePlayerComputer }`);
       
